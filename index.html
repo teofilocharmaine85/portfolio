@@ -1,0 +1,2978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website Portfolio Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+    <script src="https://kit.fontawesome.com/26f839a232.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+    <style>
+
+        /* Base Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+html{   
+    /* native smooth scrolling disabled so JS can control offset-aware scrolling */
+    scroll-behavior: auto;
+}
+body{
+    background: #056e73;
+    color: #385d5b;
+}
+#header{
+    width: 100%;
+    height: 100vh;
+    background-image: url("Yo,1.png");
+    background-size: cover;
+    background-position: center;
+}
+.container{
+    padding: 10px 10%;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 10%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+nav.scrolled {
+    background: rgba(214, 237, 232, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 10%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo{
+    width: 140px;
+    transition: all 0.3s ease;
+}
+
+nav.scrolled .logo {
+    width: 120px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a{
+    color: #000606;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #5ce1e6;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+.header-text{
+    margin-top: 20%;
+    font-size: 30px;
+}
+.header-text h1{
+    font-size: 60px;
+    margin-top: 20px;
+}
+.header-text h1 span{
+    color: #3c3f3f;
+}
+/* ----------about--------- */
+@keyframes gradientBg { 
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes slideFromLeft {
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+#about {
+    padding: 100px 0;
+    color: #ababab;
+    background: linear-gradient(45deg, #080808, #0a1a1a, #0c2626, #080808);
+    background-size: 400% 400%;
+    animation: gradientBg 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(8, 38, 40, 0.1) 0%, rgba(8, 8, 8, 0) 70%);
+    pointer-events: none;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    position: relative;
+}
+
+.about-col-1 {
+    flex-basis: 35%;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(34, 101, 107, 0.3);
+    cursor: pointer;
+}
+
+/* Slideshow Images */
+.slideshow-container .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+}
+
+.slideshow-container .slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slideshow-container .slide.flip-out {
+    animation: flipOut 0.8s ease-in-out forwards;
+}
+
+.slideshow-container .slide.flip-in {
+    animation: flipIn 0.8s ease-in-out forwards;
+}
+
+@keyframes flipOut {
+    0% { transform: rotateY(0deg); opacity: 1; }
+    50% { transform: rotateY(90deg); opacity: 0.5; }
+    100% { transform: rotateY(90deg); opacity: 0; }
+}
+
+@keyframes flipIn {
+    0% { transform: rotateY(-90deg); opacity: 0; }
+    50% { transform: rotateY(-45deg); opacity: 0.5; }
+    100% { transform: rotateY(0deg); opacity: 1; }
+}
+
+.slideshow-container .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.slideshow-container:hover .slide {
+    transform: scale(1.02);
+}
+
+/* Navigation Arrows */
+.slideshow-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(6, 103, 106);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.slideshow-container:hover .slideshow-nav {
+    opacity: 1;
+}
+
+.slideshow-nav:hover {
+    background: rgb(6, 103, 106);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slideshow-nav.prev {
+    left: 15px;
+}
+
+.slideshow-nav.next {
+    right: 15px;
+}
+
+/* Slide Indicators */
+.slide-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.slide-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(6, 103, 106, 0.5);
+}
+
+.slide-indicator.active {
+    background: rgb(6, 103, 106);
+    transform: scale(1.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Modal Styles */
+.slideshow-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.modal-slide.flip-out {
+    animation: flipOut 0.8s ease-in-out forwards;
+}
+
+.modal-slide.flip-in {
+    animation: flipIn 0.8s ease-in-out forwards;
+}
+
+.modal-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(92, 225, 230, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #5ce1e6;
+    transform: rotate(90deg);
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(6, 103, 106);
+    color: white;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 10001;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-nav:hover {
+    background: rgb(6, 103, 106);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav.prev {
+    left: 30px;
+}
+
+.modal-nav.next {
+    right: 30px;
+}
+
+.modal-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10001;
+}
+
+.modal-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(92, 225, 230, 0.5);
+}
+
+.modal-indicator.active {
+    background: rgba(92, 225, 230, 1);
+    transform: scale(1.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.about-col-2 {
+    flex-basis: 60%;
+    animation: slideFromLeft 1s ease-out;
+
+.about-col-2 .sub-title {
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(92, 225, 230, 0.3);
+}
+}
+.about-col-2 .sub-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #5ce1e6, transparent);
+    border-radius: 2px;
+}
+
+.about-col-2 p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(92, 225, 230, 0.1);
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid rgba(92, 225, 230, 0.3);
+    transition: all 0.3s ease;
+}
+
+.about-col-2 p:hover {
+    border-left-color: rgb(6, 103, 106);
+    background:#07b0b5 ;
+}
+
+.tab-titles {
+    display: flex;
+    margin: 30px 0 40px;
+    border-radius: 50px;
+    background: rgba(38, 38, 38, 0.3);
+    padding: 10px;
+    width: fit-content;
+}
+
+.tab-links {
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    padding: 10px 25px;
+    border-radius: 25px;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.tab-links:hover {
+    color: #5ce1e6;
+    text-shadow: 0 0 10px rgba(92, 225, 230, 0.5);
+}
+
+.tab-links::after {
+    content: '';
+    width: 0;
+    height: 100%;
+    background: rgba(92, 225, 230, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 25px;
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.tab-links.active-link {
+    color: #5ce1e6;
+    text-shadow: 0 0 10px rgba(92, 225, 230, 0.3);
+}
+
+.tab-links.active-link::after {
+    width: 100%;
+    background: rgba(92, 225, 230, 0.2);
+}
+
+.tab-contents ul li {
+    list-style: none;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(38, 38, 38, 0.3);
+    border-radius: 10px;
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideInList 0.5s ease forwards;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+@keyframes slideInList {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.tab-contents ul li:hover {
+    transform: translateX(10px);
+    background: rgba(92, 225, 230, 0.1);
+}
+
+.tab-contents ul li span {
+    color: #5ce1e6;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(92, 225, 230, 0.3);
+}
+
+.tab-contents {
+    display: none;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.tab-contents.active-tab {
+    display: block;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/*-----------services-------*/
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#services {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #080808 0%, #0a1515 50%, #080808 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#services::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(92, 225, 230, 0.03) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#services .container {
+    position: relative;
+    z-index: 1;
+}
+
+#services .sub-title {
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(92, 225, 230, 0.4);
+    position: relative;
+}
+
+#services .sub-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #5ce1e6, transparent);
+    border-radius: 2px;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 70px;
+}
+
+.services-list div {
+    background: linear-gradient(145deg, #262626, #1a1a1a);
+    padding: 45px 35px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(92, 225, 230, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.services-list div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(92, 225, 230, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.services-list div:hover::before {
+    opacity: 1;
+}
+
+.services-list div > * {
+    position: relative;
+    z-index: 1;
+}
+
+.services-list div i {
+    font-size: 55px;
+    margin-bottom: 25px;
+    color: #5ce1e6;
+    display: inline-block;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 20px rgba(92, 225, 230, 0.5);
+}
+
+.services-list div h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.services-list div p {
+    line-height: 1.8;
+    color: #d0d0d0;
+    margin-bottom: 20px;
+}
+
+.services-list div a {
+    text-decoration: none;
+    color: #5ce1e6;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.services-list div a::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.services-list div a:hover::after {
+    transform: translateX(5px);
+}
+
+.services-list div:hover {
+    background: linear-gradient(145deg, #15a3c7, #0e7a94);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(92, 225, 230, 0.3);
+    border-color: rgba(92, 225, 230, 0.5);
+}
+
+.services-list div:hover i {
+    animation: pulse 1s ease-in-out infinite;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.services-list div:hover h2 {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.services-list div:hover a {
+    color: #fff;
+}
+
+/* Stagger animation for service cards */
+.services-list div:nth-child(1) {
+    animation: slideUp 0.6s ease forwards;
+}
+
+.services-list div:nth-child(2) {
+    animation: slideUp 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.services-list div:nth-child(3) {
+    animation: slideUp 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+/*----------portfolio--------*/
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+#portfolio {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #080808 0%, #0d1a1a 50%, #080808 100%);
+    position: relative;
+}
+
+#portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(92, 225, 230, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(92, 225, 230, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+#portfolio .container {
+    position: relative;
+    z-index: 1;
+}
+
+#portfolio .sub-title {
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(92, 225, 230, 0.4);
+    position: relative;
+}
+
+#portfolio .sub-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #5ce1e6, transparent);
+    border-radius: 2px;
+}
+
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 45px;
+    margin-top: 70px;
+}
+
+.work {
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease;
+    border: 2px solid rgba(92, 225, 230, 0.1);
+}
+
+.work::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(92, 225, 230, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.work:hover::before {
+    opacity: 1;
+}
+
+.work img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    transition: all 0.6s ease;
+    filter: brightness(0.8);
+}
+
+.work:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(92, 225, 230, 0.3);
+    border-color: rgba(92, 225, 230, 0.5);
+}
+
+.work:hover img {
+    transform: scale(1.15) rotate(2deg);
+    filter: brightness(0.5);
+}
+
+.layer {
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to top, rgba(8, 8, 8, 0.95) 0%, rgba(92, 225, 230, 0.9) 100%);
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    font-size: 14px;
+    transition: height 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 2;
+}
+
+.layer h3 {
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease 0.2s;
+}
+
+.layer p {
+    color: #fff;
+    line-height: 1.6;
+    font-size: 15px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease 0.3s;
+}
+
+.layer a {
+    margin-top: 25px;
+    color: #080808;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 60px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease 0.4s;
+    transform: scale(0);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.layer a:hover {
+    background: #5ce1e6;
+    color: #fff;
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0 8px 25px rgba(92, 225, 230, 0.5);
+}
+
+.work:hover .layer {
+    height: 100%;
+}
+
+.work:hover .layer h3,
+.work:hover .layer p {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.work:hover .layer a {
+    transform: scale(1);
+}
+
+/* Stagger animation for hobby cards */
+.work:nth-child(1) {
+    animation: zoomIn 0.6s ease forwards;
+}
+
+.work:nth-child(2) {
+    animation: zoomIn 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.work:nth-child(3) {
+    animation: zoomIn 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.btn {
+    display: block;
+    margin: 60px auto 0;
+    width: fit-content;
+    border: 2px solid rgb(6, 103, 106);
+    padding: 16px 55px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(6, 103, 106, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: rgb(6, 103, 106);
+    color: #080808;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(6, 103, 106, 0.4);
+}
+
+/*----------multimedia--------*/
+@keyframes fadeInScale {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes playPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes floatMultimedia {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-15px) rotate(1deg); }
+    66% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes rotateBackground {
+    0% { transform: rotate(0deg) scale(1.5); }
+    100% { transform: rotate(360deg) scale(1.5); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(92, 225, 230, 0.3),
+                    0 0 40px rgba(92, 225, 230, 0.2),
+                    inset 0 0 20px rgba(92, 225, 230, 0.1);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(92, 225, 230, 0.5),
+                    0 0 60px rgba(92, 225, 230, 0.3),
+                    inset 0 0 30px rgba(92, 225, 230, 0.2);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from { 
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes badgeSlide {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#multimedia {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #080808 0%, #0f1515 50%, #080808 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#multimedia::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: 
+        radial-gradient(circle at center, rgba(92, 225, 230, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 30% 30%, rgba(92, 225, 230, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(92, 225, 230, 0.05) 0%, transparent 50%);
+    animation: rotateBackground 60s linear infinite;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+#multimedia::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(92, 225, 230, 0.03) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(92, 225, 230, 0.03) 50%, transparent 52%);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+#multimedia .container {
+    position: relative;
+    z-index: 1;
+}
+
+#multimedia .sub-title {
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(92, 225, 230, 0.4),
+                 0 0 50px rgba(92, 225, 230, 0.2);
+    position: relative;
+    animation: slideInFromBottom 0.8s ease-out;
+}
+
+#multimedia .sub-title::before {
+    content: '📸';
+    position: absolute;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    font-size: 40px;
+    opacity: 0.3;
+    animation: floatMultimedia 4s ease-in-out infinite;
+}
+
+#multimedia .sub-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, #5ce1e6, #3ac7cc, #5ce1e6, transparent);
+    border-radius: 3px;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 50px 0 30px;
+    flex-wrap: wrap;
+    animation: slideInFromBottom 1s ease-out 0.3s backwards;
+}
+
+.filter-btn {
+    padding: 12px 30px;
+    background: rgba(38, 38, 38, 0.5);
+    border: 2px solid rgba(92, 225, 230, 0.2);
+    border-radius: 50px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.filter-btn i {
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(6, 103, 106, 0.4) 0%, rgba(6, 103, 106, 0.1) 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    width: 400px;
+    height: 400px;
+}
+
+.filter-btn:hover {
+    border-color: rgb(6, 103, 106);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(6, 103, 106, 0.4);
+}
+
+.filter-btn:hover i {
+    transform: scale(1.2) rotate(15deg);
+}
+
+.filter-btn.active {
+    background: rgb(6, 103, 106);
+    color: #080808;
+    border-color: rgb(6, 103, 106);
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(6, 103, 106, 0.5);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.filter-btn.active i {
+    animation: playPulse 1s ease-in-out infinite;
+}
+
+.filter-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Media Grid */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 45px;
+    margin-top: 40px;
+}
+
+.media-item {
+    background: linear-gradient(145deg, #262626, #1a1a1a);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid rgba(92, 225, 230, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.media-item.hide {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+/* Strong hide used by filter buttons to completely remove items from layout */
+.media-item.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: none !important;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+        display: none;
+    }
+}
+
+.media-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(92, 225, 230, 0.15) 0%, rgba(60, 199, 204, 0.1) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.media-item:hover::before {
+    opacity: 1;
+}
+
+.media-item:hover {
+    /* Only lift the card on hover; avoid scaling the whole item so overlays stay fixed */
+    transform: translateY(-20px);
+    box-shadow: 0 25px 60px rgba(92, 225, 230, 0.4),
+                0 0 40px rgba(92, 225, 230, 0.2);
+    border-color: rgba(92, 225, 230, 0.6);
+    background: linear-gradient(145deg, #2d2d2d, #222222);
+}
+
+/* Media Content */
+.media-content {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+    overflow: hidden;
+}
+
+.media-item video,
+.media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px 20px 0 0;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: brightness(0.85) contrast(1.1);
+}
+
+.media-item:hover video,
+.media-item:hover img {
+    transform: scale(1.1) rotate(1deg);
+    filter: brightness(1.1) contrast(1.2) saturate(1.2);
+}
+
+/* Media Type Badge */
+.media-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(92, 225, 230, 0.95), rgba(60, 199, 204, 0.95));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    color: #080808;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(92, 225, 230, 0.4);
+    transition: all 0.4s ease;
+    animation: badgeSlide 0.6s ease-out;
+}
+
+.media-badge i {
+    font-size: 14px;
+    animation: playPulse 2s ease-in-out infinite;
+}
+
+.media-item:hover .media-badge {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 25px rgba(92, 225, 230, 0.6);
+}
+
+/* Play Button Overlay for Videos (centered inside the media-content so it doesn't shift)
+   Keep the overlay outside any scaled element so it remains visually static on hover. */
+.media-item[data-type="video"] .media-content::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 56px;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(92, 225, 230, 0.3), rgba(60, 199, 204, 0.3));
+    backdrop-filter: blur(15px);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    pointer-events: none;
+    z-index: 5;
+    box-shadow: 0 8px 30px rgba(92, 225, 230, 0.5),
+                inset 0 0 20px rgba(92, 225, 230, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.media-item[data-type="video"]:hover .media-content::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: none; /* avoid inherited pulse scaling that would move it */
+}
+
+/* Magnify effect for photos */
+.media-item[data-type="photo"] .media-content::after {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    opacity: 0;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    pointer-events: none;
+    z-index: 5;
+    filter: drop-shadow(0 0 10px rgba(92, 225, 230, 0.8));
+}
+
+.media-item[data-type="photo"]:hover .media-content::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+    animation: none;
+}
+
+/* Media Info */
+.media-info {
+    padding: 12px 20px 16px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(26, 26, 26, 1) 0%, rgba(38, 38, 38, 0.9) 100%);
+}
+
+.media-info::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #5ce1e6, #3ac7cc);
+    transition: width 0.5s ease;
+}
+
+.media-item:hover .media-info::before {
+    width: 100%;
+}
+
+.media-info h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #fff;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 10px rgba(92, 225, 230, 0.2);
+    position: relative;
+}
+
+.media-info h3::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: #5ce1e6;
+    transition: width 0.4s ease;
+}
+
+.media-item:hover .media-info h3 {
+    color: #5ce1e6;
+    text-shadow: 0 0 20px rgba(92, 225, 230, 0.6);
+    transform: translateX(15px);
+}
+
+.media-item:hover .media-info h3::before {
+    width: 8px;
+}
+
+.media-info p {
+    color: #ababab;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.media-item:hover .media-info p {
+    color: #d0d0d0;
+    transform: translateX(5px);
+}
+
+/* View count / Duration overlay */
+.media-meta {
+    position: absolute;
+    bottom: 45%;
+    left: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.media-item:hover .media-meta {
+    opacity: 1;
+    bottom: 50%;
+}
+
+.meta-tag {
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(92, 225, 230, 0.3);
+}
+
+.meta-tag i {
+    color: #5ce1e6;
+}
+
+/* Stagger animation for media items */
+.media-item:nth-child(1) {
+    animation: fadeInScale 0.6s ease forwards;
+}
+
+.media-item:nth-child(2) {
+    animation: fadeInScale 0.6s ease 0.1s forwards;
+    opacity: 0;
+}
+
+.media-item:nth-child(3) {
+    animation: fadeInScale 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.media-item:nth-child(4) {
+    animation: fadeInScale 0.6s ease 0.3s forwards;
+    opacity: 0;
+}
+
+.media-item:nth-child(5) {
+    animation: fadeInScale 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.media-item:nth-child(6) {
+    animation: fadeInScale 0.6s ease 0.5s forwards;
+    opacity: 0;
+}
+
+/*--------contact---------*/
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 5px 20px rgba(92, 225, 230, 0.3); }
+    50% { box-shadow: 0 8px 30px rgba(92, 225, 230, 0.6); }
+}
+
+#contact {
+    padding: 80px 0 0;
+    background: linear-gradient(180deg, #080808 0%, #0a1515 50%, #080808 100%);
+    position: relative;
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(92, 225, 230, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+#contact .container {
+    position: relative;
+    z-index: 1;
+}
+
+#contact .sub-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(92, 225, 230, 0.3);
+    position: relative;
+}
+
+#contact .sub-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #5ce1e6, transparent);
+    border-radius: 2px;
+}
+
+.contact-left {
+    flex-basis: 35%;
+    min-width: 300px;
+}
+
+.contact-right {
+    flex-basis: 60%;
+    min-width: 300px;
+}
+
+.contact-left p {
+    margin-top: 25px;
+    font-size: 16px;
+    color: #d0d0d0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.contact-left p:hover {
+    background: rgba(92, 225, 230, 0.05);
+    transform: translateX(10px);
+}
+
+.contact-left p i {
+    color: #5ce1e6;
+    margin-right: 15px;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+
+.contact-left p:hover i {
+    animation: iconBounce 0.6s ease;
+    text-shadow: 0 0 20px rgba(92, 225, 230, 0.8);
+}
+
+.social-icons {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 32px;
+    color: #ababab;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(38, 38, 38, 0.5);
+    transition: all 0.4s ease;
+    border: 2px solid rgba(92, 225, 230, 0.1);
+}
+
+.social-icons a:hover {
+    color: #fff;
+    background: #5ce1e6;
+    transform: translateY(-8px) rotate(360deg);
+    border-color: #5ce1e6;
+    box-shadow: 0 10px 25px rgba(92, 225, 230, 0.4);
+}
+
+.btn.btn2 {
+    display: inline-block;
+    background: linear-gradient(135deg, #5ce1e6, #3ac7cc);
+    color: #080808;
+    font-weight: 600;
+    margin-top: 35px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(92, 225, 230, 0.3);
+    transition: all 0.4s ease;
+}
+
+.btn.btn2:hover {
+    background: linear-gradient(135deg, #3ac7cc, #5ce1e6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(92, 225, 230, 0.5);
+}
+
+.contact-right form {
+    width: 100%;
+    background: rgba(38, 38, 38, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(92, 225, 230, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+form input, form textarea {
+    width: 100%;
+    border: 2px solid rgba(92, 225, 230, 0.2);
+    outline: none;
+    background: rgba(38, 38, 38, 0.5);
+    padding: 18px 20px;
+    margin: 15px 0;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #888;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #5ce1e6;
+    background: rgba(38, 38, 38, 0.7);
+    box-shadow: 0 0 20px rgba(92, 225, 230, 0.2);
+    transform: translateY(-2px);
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+form .btn2 {
+    padding: 16px 65px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+form .btn2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+form .btn2:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+form .btn2:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    font-weight: 300;
+    margin-top: 80px;
+    border-top: 1px solid rgba(215, 225, 225, 0.1);
+    font-size: 15px;
+}
+
+.copyright i {
+    color: #e4eeee;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.copyright:hover i {
+    animation: iconBounce 0.6s ease;
+}
+/*------------css for small screens---------*/
+/* Hamburger Icon Animation */
+@keyframes hamburgerPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(92, 225, 230, 0.7);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(92, 225, 230, 0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInStagger {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+nav .fa-solid{
+    display: none;
+}
+
+/* Hamburger Menu Icon */
+nav .fa-bars {
+    color: #5ce1e6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(92, 225, 230, 0.1);
+    border: 2px solid rgba(92, 225, 230, 0.3);
+}
+
+nav .fa-bars:hover {
+    background: rgba(92, 225, 230, 0.2);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(92, 225, 230, 0.4);
+    animation: hamburgerPulse 1.5s infinite;
+}
+
+nav .fa-bars:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+@media only screen and (max-width: 600px){
+    #header{
+        background-image: url(ll.png);
+    }
+    .header-text{
+        margin-top: 100%;
+        font-size: 16px;
+    }
+    .header-text h1{
+        font-size: 30px;
+    }
+    nav .fa-solid{
+        display: block;
+        font-size: 25px;
+    }
+    
+    /* Enhanced Mobile Sidebar */
+    nav ul{
+        background: linear-gradient(135deg, #5ce1e6 0%, #3ac7cc 100%);
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100vh;
+        padding-top: 80px;
+        z-index: 9999;
+        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+    }
+    
+    nav ul::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    nav ul::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.05) 50%, transparent 52%);
+        background-size: 20px 20px;
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    
+    nav ul li{
+        display: block;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        animation: fadeInStagger 0.5s ease forwards;
+    }
+    
+    nav ul li:nth-child(1) { animation-delay: 0.1s; }
+    nav ul li:nth-child(2) { animation-delay: 0.2s; }
+    nav ul li:nth-child(3) { animation-delay: 0.3s; }
+    nav ul li:nth-child(4) { animation-delay: 0.4s; }
+    nav ul li:nth-child(5) { animation-delay: 0.5s; }
+    nav ul li:nth-child(6) { animation-delay: 0.6s; }
+    
+    nav ul li a {
+        display: block;
+        padding: 18px 30px;
+        color: #080808;
+        font-size: 18px;
+        font-weight: 500;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    nav ul li a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: width 0.3s ease;
+    }
+    
+    nav ul li a:hover::before {
+        width: 100%;
+    }
+    
+    nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-left-color: #080808;
+        padding-left: 40px;
+        color: #080808;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    nav ul li a::after {
+        display: none;
+    }
+    
+    /* Close Button */
+    nav ul .fa-solid{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+        color: #080808;
+        background: rgba(255, 255, 255, 0.2);
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 22px;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(8, 8, 8, 0.2);
+    }
+    
+    nav ul .fa-solid:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg) scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-color: #080808;
+    }
+    
+    nav ul .fa-solid:active {
+        transform: rotate(90deg) scale(0.9);
+    }
+    .sub-title{
+        font-size: 40px;
+    }
+    #services .sub-title::after {
+        width: 60px;
+    }
+    .services-list {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 50px;
+    }
+    .services-list div {
+        padding: 35px 25px;
+    }
+    .work-list {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-top: 50px;
+    }
+    .work {
+        border-radius: 15px;
+    }
+    .work img {
+        border-radius: 15px;
+    }
+    .layer {
+        border-radius: 15px;
+    }
+    .media-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-top: 50px;
+    }
+    .media-item {
+        border-radius: 15px;
+    }
+    .media-item video,
+    .media-item img {
+        border-radius: 15px 15px 0 0;
+    }
+    .media-info {
+        padding: 20px;
+    }
+    .filter-buttons {
+        gap: 10px;
+        margin: 30px 0 20px;
+    }
+    .filter-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .about-col-1, .about-col-2{
+        flex-basis: 100%;
+    }
+    .about-col-1{
+        margin-bottom: 30px;
+    }
+    .about-col-2{
+        font-size: 14px;
+    }
+    
+    /* Responsive slideshow styles */
+    .slideshow-container {
+        height: 350px;
+    }
+    
+    .slideshow-nav {
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .slideshow-nav.prev {
+        left: 10px;
+    }
+    
+    .slideshow-nav.next {
+        right: 10px;
+    }
+    
+    .slide-indicators {
+        bottom: 15px;
+        gap: 8px;
+    }
+    
+    .slide-indicator {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        height: 70%;
+    }
+    
+    .modal-nav {
+        width: 45px;
+        height: 45px;
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    .modal-nav.prev {
+        left: 15px;
+    }
+    
+    .modal-nav.next {
+        right: 15px;
+    }
+    
+    .modal-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+    }
+    
+    .modal-indicators {
+        bottom: 20px;
+        gap: 10px;
+    }
+    
+    .modal-indicator {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .tab-links{
+        font-size: 16px;
+        margin-right: 20px;
+    }
+    .contact-left, .contact-right{
+        flex-basis: 100%;
+    }
+    .contact-right form {
+        padding: 30px 25px;
+    }
+    .social-icons {
+        flex-wrap: wrap;
+    }
+    .copyright{
+        font-size: 14px;
+    }
+}
+#msg{
+    color: #5ce1e6;
+    margin-top: 20px;
+    display: block;
+    padding: 15px;
+    background: rgba(92, 225, 230, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(92, 225, 230, 0.3);
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Lightbox / Modal for media zoom */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2, 6, 10, 0.85);
+    z-index: 99999;
+    padding: 24px;
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 120px rgba(92,225,230,0.06);
+    transform: scale(0.98);
+    transition: transform 220ms ease;
+}
+
+#lightbox.active .lightbox-content { transform: scale(1); }
+
+.lightbox-content img,
+.lightbox-content video {
+    width: 100%;
+    height: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+    background: #000;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    color: #080808;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 3;
+    border: none;
+}
+
+.lightbox-close:hover { transform: scale(1.05); }
+
+/* Small screens adjustments */
+@media (max-width: 600px) {
+    .lightbox-content { max-width: 95%; }
+    .lightbox-close { width: 40px; height: 40px; font-size: 20px; }
+}
+
+/* Caption shown under the media in the lightbox */
+.lightbox-caption {
+    padding: 18px 20px;
+    background: linear-gradient(to top, rgba(14,14,14,0.95), rgba(26,26,26,0.94));
+    color: #e8fafa;
+    text-align: left;
+}
+.lightbox-caption h3 {
+    margin: 0 0 6px 0;
+    font-size: 26px;
+    color: #5ce1e6;
+    text-shadow: 0 0 12px rgba(92,225,230,0.25);
+}
+.lightbox-caption p {
+    margin: 0;
+    color: #cfdcdc;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ------------------ custom tweaks ------------------ */
+/* Hide the first two contact <p> elements (email + phone) but keep them in the HTML for easy restore */
+.contact-left > p:nth-of-type(-n+2) {
+    display: none !important;
+}
+
+/* Back-to-top button styles */
+#backToTop {
+    position: fixed;
+    right: 20px;
+    bottom: 26px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: none; /* shown via JS when scrolled */
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #5ce1e6, #3ac7cc);
+    color: #080808;
+    border: none;
+    cursor: pointer;
+    z-index: 100000;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 6px 18px rgba(60,199,204,0.08);
+    transition: transform 0.18s ease, opacity 0.2s ease;
+}
+#backToTop:hover { transform: translateY(-6px); }
+#backToTop i { font-size: 18px; }
+
+</style>
+
+<div id="header">
+    <div class="container">
+        <nav>
+           
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Hobbies</a></li>
+                <li><a href="#multimedia">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fa-solid fa-square-xmark" onclick="closemenu()"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <h1>Hi, It's Me! <br><span>Charmaine Teofilo</span><br> from BSIT-3C </h1>
+        </div>
+    </div>
+</div>
+<!-----------about---------->
+<div id="about" class="reveal">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1" data-aos="fade-right">
+                <div class="slideshow-container" id="aboutSlideshow">
+                    <div class="slide active">
+                        <img src="about.jpg" alt="Charmaine Teofilo - Image 1">
+                    </div>
+                    <div class="slide">
+                        <img src="about 5.png" alt="Charmaine Teofilo - Image 2">
+                    </div>
+                    <div class="slide">
+                        <img src="about 2.jpg" alt="Charmaine Teofilo - Image 3">
+                    </div>
+                    <div class="slide">
+                        <img src="about 3.jpg" alt="Charmaine Teofilo - Image 4">
+                    </div>
+                    
+                    <button class="slideshow-nav prev" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slideshow-nav next" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="slide-indicators">
+                        <span class="slide-indicator active" onclick="goToSlide(0)"></span>
+                        <span class="slide-indicator" onclick="goToSlide(1)"></span>
+                        <span class="slide-indicator" onclick="goToSlide(2)"></span>
+                        <span class="slide-indicator" onclick="goToSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-col-2" data-aos="fade-left">
+                <h1 class="sub-title">About Me</h1>
+                <p class="bio-text">I’m Charmaine Teofilo, 20 years old, a 3rd-year student at Lapu-Lapu City College, majoring in computer technology and currently residing at St. Lucia, Punta Engaño, Lapu-Lapu City.  I have a passion for learning new things, and I enjoy watching dramas and anime. I describe myself as not an expressive person but a friendly one. My motto in life is to keep going until you make it because everything that happens has a reason.
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>First</span><br>Autocad 2D Rendering</li>
+                        <li><span>Second</span><br>MS Word</li>
+                        <li><span>Third</span><br>Active Listening</li>
+
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>2021 - Current</span><br>Assistant Project Manager</li>
+                        <li><span>2020 - 2021</span><br>Sales Representative</li>
+                        <li><span>2017 - 2019</span><br>Volleyball Player</li>
+                    </ul>
+                </div>  
+                <div class="tab-contents" id="education">
+                    <ul>
+                         <li><span>2024 - 2025</span><br>Lapu-Lapu City College</li>
+                        <li><span>2022 - 2023</span><br>Asian Learning Center</li>
+                        <li><span>2020 - 2021</span><br>Lala National High School</li>
+                        <li><span>2016 - 2017</span><br>Sto. Niño Pagadian City Elementary School</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Slideshow -->
+<div class="slideshow-modal" id="slideshowModal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <div class="modal-slide active">
+            <img src="about.jpg" alt="Charmaine Teofilo - Image 1">
+        </div>
+        <div class="modal-slide">
+            <img src="about 5.png" alt="Charmaine Teofilo - Image 2">
+        </div>
+        <div class="modal-slide">
+            <img src="about 2.jpg" alt="Charmaine Teofilo - Image 3">
+        </div>
+        <div class="modal-slide">
+            <img src="about 3.jpg" alt="Charmaine Teofilo - Image 4">
+        </div>
+        
+        <button class="modal-nav prev" onclick="changeModalSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="modal-nav next" onclick="changeModalSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <div class="modal-indicators">
+            <span class="modal-indicator active" onclick="goToModalSlide(0)"></span>
+            <span class="modal-indicator" onclick="goToModalSlide(1)"></span>
+            <span class="modal-indicator" onclick="goToModalSlide(2)"></span>
+            <span class="modal-indicator" onclick="goToModalSlide(3)"></span>
+        </div>
+    </div>
+</div>
+<!----------services------------>
+
+<!-----------portfolio--------->
+<div id="portfolio" class="reveal">
+    <div class="container">
+        <h1 class="sub-title">My Hobbies</h1>
+        <div class="work-list">
+            <div class="work hobby-card">
+                <img src="vol.jpg" alt="Vollyballl">
+                <div class="layer">
+                    <h3>Vollyball</h3>
+                    <p>I love spending time playing vollyball.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work hobby-card">
+                <img src="hb 5.jpg" alt="Watching Dramas & Anime">
+                <div class="layer">
+                    <h3>Watching Dramas & Anime</h3>
+                     <p>I usually watch dramas and anime during free time and when I am bored.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work hobby-card">
+                <img src="vol 4.jpg" alt="Listening Music">
+                <div class="layer">
+                    <h3>Listening Music</h3>
+                    <p>I enjoy listening to music because it makes my mind at peace.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn">See more</a>
+    </div>
+</div>
+<!-----------multimedia--------->
+<div id="multimedia" class="reveal">
+    <div class="container">
+        <h1 class="sub-title">Activities</h1>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fa-solid fa-grid-2"></i> All
+            </button>
+            <button class="filter-btn" data-filter="video">
+                <i class="fa-solid fa-video"></i> Videos
+            </button>
+            <button class="filter-btn" data-filter="photo">
+                <i class="fa-solid fa-image"></i> Photos
+            </button>
+        </div>
+
+        <!-- Media Grid -->
+        <div class="media-grid">
+            <!-- Video Items -->
+            <div class="media-item" data-type="video" data-category="video">
+                <div class="media-content">
+                    <video controls preload="metadata" >
+                        <source src="LLCC TOUR.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <span class="media-badge"><i class="fa-solid fa-video"></i> Video</span>
+                </div>
+                <div class="media-info">
+                    <h3>Advertisement(LLCC Tour)</h3>
+                </div>
+            </div>
+
+            <div class="media-item" data-type="video" data-category="video">
+                <div class="media-content">
+                    <video controls preload="metadata" >
+                        <source src="ET 101.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <span class="media-badge"><i class="fa-solid fa-video"></i> Video</span>
+                </div>
+                <div class="media-info">
+                    <h3>PERFORMANCE TASK #4</h3>
+                </div>
+            </div>
+
+            <div class="media-item" data-type="video" data-category="video">
+                <div class="media-content">
+                    <video controls preload="metadata" >
+                        <source src="TEOFILO- SOLO VIDEO.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <span class="media-badge"><i class="fa-solid fa-video"></i> Video</span>
+                </div>
+                <div class="media-info">
+                    <h3>SOLO VIDEO</h3>
+                </div>
+            </div>
+
+            <!-- Photo Items -->
+            <div class="media-item" data-type="photo" data-category="photo">
+                <div class="media-content">
+                    <img src="ML 2.jpg" alt="Basketball Court">
+                    <span class="media-badge"><i class="fa-solid fa-image"></i> Photo</span>
+                </div>
+                <div class="media-info">
+                    <h3>Autobiography</h3>
+                </div>
+            </div>
+
+            <div class="media-item" data-type="photo" data-category="photo">
+                <div class="media-content">
+                    <img src="ML 1.jpg" alt="Tech Setup">
+                    <span class="media-badge"><i class="fa-solid fa-image"></i> Photo</span>
+                </div>
+                <div class="media-info">
+                    <h3>Wonders of Nature</h3>
+                </div>
+            </div>
+
+            <div class="media-item" data-type="photo" data-category="photo">
+                <div class="media-content">
+                    <img src="ML 3.jpg" alt="Reading Corner">
+                    <span class="media-badge"><i class="fa-solid fa-image"></i> Photo</span>
+                </div>
+                
+            
+                <div class="media-info">
+                    <h3>JavaScript Coding</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-----------contact--------->
+<div id="contact" class="reveal">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i> <span>teofilo.charmaine@llcc.edu.ph</span></p>
+                <p><i class="fa-solid fa-phone-volume"></i> <span>09658950959</span></p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/charmaine.teofilo.7" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.youtube.com" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+               
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © 2025 CHARMS</p>
+    </div>
+</div>
+
+
+
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right = "0";
+    }
+    function closemenu(){
+        sidemenu.style.right = "-280px";
+    }
+
+    // Auto-close menu when clicking on any link
+    document.querySelectorAll('#sidemenu li a').forEach(link => {
+        link.addEventListener('click', function() {
+            closemenu();
+        });
+    });
+
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby5XQj857g0__Xs8-sMeGMJddmqwlZacZno9CaB8-zjjr6T44mETmugSuBYAkZrTijeYg/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+  <script>
+    // Scroll Animation
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        
+        reveals.forEach(element => {
+            var windowHeight = window.innerHeight;
+            var elementTop = element.getBoundingClientRect().top;
+            var elementVisible = 150;
+            
+            if (elementTop < windowHeight - elementVisible) {
+                element.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", reveal);
+
+    // Add reveal class to sections
+    document.querySelectorAll('section, .services-list div, .work, .media-item').forEach(element => {
+        element.classList.add('reveal');
+    });
+
+    // Trigger initial reveal
+    reveal();
+
+    // Smooth navbar background on scroll
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Multimedia Filter Functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const mediaItems = document.querySelectorAll('.media-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Toggle active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            mediaItems.forEach(item => {
+                const itemType = (item.getAttribute('data-type') || '').toLowerCase();
+                const itemCategory = (item.getAttribute('data-category') || '').toLowerCase();
+
+                if (filterValue === 'all') {
+                    item.classList.remove('hidden');
+                } else if (itemType === filterValue || itemCategory === filterValue) {
+                    // show matching items
+                    item.classList.remove('hidden');
+                } else {
+                    // hide non-matching items
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    });
+  </script>
+  
+    <!-- Lightbox script -->
+    <script>
+        (function(){
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-content" role="dialog" aria-modal="true">
+                    <button class="lightbox-close" aria-label="Close">&times;</button>
+                    <div class="lightbox-media">
+                        <img id="lightbox-img" src="" alt="" style="display:none">
+                        <video id="lightbox-video" controls style="display:none"></video>
+                    </div>
+                    <div class="lightbox-caption">
+                        <h3 id="lightbox-title"></h3>
+                        <p id="lightbox-desc"></p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbVideo = document.getElementById('lightbox-video');
+            const lbClose = lb.querySelector('.lightbox-close');
+
+            function openLightbox(type, src, title, desc){
+                // populate caption
+                const titleEl = document.getElementById('lightbox-title');
+                const descEl = document.getElementById('lightbox-desc');
+                if(titleEl) titleEl.textContent = title || '';
+                if(descEl) descEl.textContent = desc || '';
+
+                if(type === 'photo'){
+                    lbVideo.style.display = 'none';
+                    lbVideo.pause();
+                    lbVideo.removeAttribute('src');
+                    lbImg.src = src;
+                    lbImg.style.display = 'block';
+                } else if(type === 'video'){
+                    lbImg.style.display = 'none';
+                    lbVideo.src = src;
+                    lbVideo.style.display = 'block';
+                    lbVideo.currentTime = 0;
+                    // try play, but ignore promise
+                    lbVideo.play().catch(()=>{});
+                }
+                document.body.style.overflow = 'hidden';
+                lb.classList.add('active');
+            }
+
+            function closeLightbox(){
+                lb.classList.remove('active');
+                document.body.style.overflow = '';
+                // pause/cleanup
+                lbVideo.pause();
+                lbVideo.removeAttribute('src');
+                lbImg.src = '';
+                // clear caption
+                const titleEl = document.getElementById('lightbox-title');
+                const descEl = document.getElementById('lightbox-desc');
+                if(titleEl) titleEl.textContent = '';
+                if(descEl) descEl.textContent = '';
+            }
+
+            // Click handlers on media items
+            document.querySelectorAll('.media-item').forEach(item => {
+                item.addEventListener('click', function(e){
+                    // Avoid triggering when clicking controls inside media (like play button overlay)
+                    // Only open lightbox when clicking the media-content or the img/video itself
+                    const target = e.target;
+                    const isBadge = target.closest('.media-badge');
+                    const isInfo = target.closest('.media-info');
+                    if(isBadge || isInfo) return; // don't open when clicking badge or info panel
+
+                    const type = item.getAttribute('data-type');
+                    if(type === 'photo'){
+                        const img = item.querySelector('.media-content img');
+                        if(img && img.src) {
+                            const title = (item.querySelector('.media-info h3') || {}).textContent || '';
+                            const desc = (item.querySelector('.media-info p') || {}).textContent || '';
+                            openLightbox('photo', img.src, title, desc);
+                        }
+                    } else if(type === 'video'){
+                        const video = item.querySelector('.media-content video');
+                        // get first source or currentSrc
+                        if(video){
+                            const src = video.querySelector('source') ? video.querySelector('source').src : video.currentSrc || video.src;
+                            if(src){
+                                const title = (item.querySelector('.media-info h3') || {}).textContent || '';
+                                const desc = (item.querySelector('.media-info p') || {}).textContent || '';
+                                openLightbox('video', src, title, desc);
+                            }
+                        }
+                    }
+                });
+            });
+
+            // close handlers
+            lb.addEventListener('click', function(e){
+                if(e.target === lb) closeLightbox();
+            });
+            lbClose.addEventListener('click', closeLightbox);
+
+            // stop propagation inside content so clicks don't close
+            lb.querySelector('.lightbox-content').addEventListener('click', function(e){ e.stopPropagation(); });
+
+            // ESC key
+            document.addEventListener('keydown', function(e){
+                if(e.key === 'Escape' && lb.classList.contains('active')){
+                    closeLightbox();
+                }
+            });
+        })();
+    </script>
+    
+    <!-- About Me Slideshow JavaScript -->
+    <script>
+        (function(){
+            let currentSlide = 0;
+            let currentModalSlide = 0;
+            let autoSlideInterval;
+            const slides = document.querySelectorAll('#aboutSlideshow .slide');
+            const indicators = document.querySelectorAll('#aboutSlideshow .slide-indicator');
+            const modalSlides = document.querySelectorAll('#slideshowModal .modal-slide');
+            const modalIndicators = document.querySelectorAll('#slideshowModal .modal-indicator');
+            const modal = document.getElementById('slideshowModal');
+            const slideshowContainer = document.getElementById('aboutSlideshow');
+
+            // Function to show slide with flip animation
+            function showSlide(index, container = 'main') {
+                const slideElements = container === 'main' ? slides : modalSlides;
+                const indicatorElements = container === 'main' ? indicators : modalIndicators;
+                const currentIndex = container === 'main' ? currentSlide : currentModalSlide;
+
+                if (index >= slideElements.length) index = 0;
+                if (index < 0) index = slideElements.length - 1;
+
+                // Apply flip-out animation to current slide
+                if (slideElements[currentIndex]) {
+                    slideElements[currentIndex].classList.add('flip-out');
+                    slideElements[currentIndex].classList.remove('active', 'flip-in');
+                }
+
+                // Update current slide index
+                if (container === 'main') {
+                    currentSlide = index;
+                } else {
+                    currentModalSlide = index;
+                }
+
+                // Apply flip-in animation to new slide
+                setTimeout(() => {
+                    slideElements.forEach(slide => {
+                        slide.classList.remove('active', 'flip-out', 'flip-in');
+                    });
+                    slideElements[index].classList.add('active', 'flip-in');
+
+                    // Update indicators
+                    indicatorElements.forEach(indicator => indicator.classList.remove('active'));
+                    indicatorElements[index].classList.add('active');
+                }, 400);
+            }
+
+            // Change slide function
+            window.changeSlide = function(direction) {
+                showSlide(currentSlide + direction, 'main');
+                resetAutoSlide();
+            };
+
+            // Go to specific slide
+            window.goToSlide = function(index) {
+                showSlide(index, 'main');
+                resetAutoSlide();
+            };
+
+            // Modal slide functions
+            window.changeModalSlide = function(direction) {
+                showSlide(currentModalSlide + direction, 'modal');
+            };
+
+            window.goToModalSlide = function(index) {
+                showSlide(index, 'modal');
+            };
+
+            // Open modal when clicking slideshow
+            slideshowContainer.addEventListener('click', function(e) {
+                // Don't open modal if clicking navigation buttons or indicators
+                if (e.target.closest('.slideshow-nav') || e.target.closest('.slide-indicator')) {
+                    return;
+                }
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                currentModalSlide = currentSlide;
+                showSlide(currentModalSlide, 'modal');
+                stopAutoSlide();
+            });
+
+            // Close modal
+            window.closeModal = function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                startAutoSlide();
+            };
+
+            // Close modal on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Close modal when clicking outside content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Auto slide functionality
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1, 'main');
+                }, 5000); // Change slide every 5 seconds
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            function resetAutoSlide() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+
+            // Pause auto-slide on hover
+            slideshowContainer.addEventListener('mouseenter', stopAutoSlide);
+            slideshowContainer.addEventListener('mouseleave', startAutoSlide);
+
+            // Initialize auto-slide
+            startAutoSlide();
+
+            // Keyboard navigation for modal
+            document.addEventListener('keydown', function(e) {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        changeModalSlide(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeModalSlide(1);
+                    }
+                }
+            });
+        })();
+    </script>
+        <!-- Back-to-top button -->
+        <button id="backToTop" aria-label="Back to top" title="Back to top" type="button">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <script>
+            (function(){
+                const btn = document.getElementById('backToTop');
+
+                // show button after scrolling down some amount
+                window.addEventListener('scroll', () => {
+                    if(window.scrollY > 250) {
+                        btn.style.display = 'flex';
+                        btn.style.opacity = '1';
+                    } else {
+                        btn.style.opacity = '0';
+                        // small timeout so opacity transition can run before hiding layout
+                        setTimeout(() => {
+                            if(window.scrollY <= 250) btn.style.display = 'none';
+                        }, 200);
+                    }
+                });
+
+                // smooth scroll to top on click
+                btn.addEventListener('click', function(){
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    // focus the top of the document for accessibility
+                    document.documentElement.focus();
+                });
+
+                // keyboard accessibility (Enter/Space)
+                btn.addEventListener('keydown', function(e){
+                    if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+                });
+            })();
+        </script>
+            <!-- Smooth internal anchor scrolling (accounts for fixed nav height and closes mobile menu) -->
+            <script>
+                (function(){
+                    const nav = document.querySelector('nav');
+                    function navOffset(){
+                        try{ return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 0; }catch(e){ return 0; }
+                    }
+
+                    // Handle all in-page links
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function(e){
+                            const hash = this.getAttribute('href');
+                            // if no hash or just '#', scroll to top smoothly
+                            if(!hash) return;
+                            if(hash === '#'){
+                                e.preventDefault();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                history.replaceState(null, '', '#');
+                                if(typeof closemenu === 'function') closemenu();
+                                return;
+                            }
+
+                            const target = document.querySelector(hash);
+                            if(!target) return; // let default if target not found
+
+                            e.preventDefault();
+                            const offset = navOffset();
+                            const top = window.scrollY + target.getBoundingClientRect().top - offset;
+
+                            // ensure focusable for accessibility
+                            if(!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+
+                            window.scrollTo({ top: Math.max(0, Math.floor(top)), behavior: 'smooth' });
+
+                            // update URL without jumping and focus element after animation
+                            setTimeout(()=>{
+                                try{ history.replaceState(null, '', hash); }catch(e){}
+                                try{ target.focus({preventScroll:true}); }catch(e){ target.focus(); }
+                            }, 500);
+
+                            // close mobile sidemenu if open
+                            if(typeof closemenu === 'function') closemenu();
+                        });
+                    });
+                })();
+            </script>
+</body>
+</html>
